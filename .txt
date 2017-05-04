@@ -1,0 +1,6 @@
+~/wdi/projects/list-project-api (master)$ heroku config:set SECRET_KEY_BASE=$(rake secret)
+Setting SECRET_KEY_BASE and restarting ⬢ morning-garden-72213... done, v6
+SECRET_KEY_BASE: 25e7e83899f9766882a6063068d09b946da6ec23faa37129136229dd808c65f2139f6c39c46c54afe8495ee1d3113c190ca5ac00a08b0e1debfa3b3317721873
+~/wdi/projects/list-project-api (master)$ heroku config:set SECRET_TOKEN=$(rake secret)
+Setting SECRET_TOKEN and restarting ⬢ morning-garden-72213... done, v7
+SECRET_TOKEN: 88b6034d943886790bf45f16055525197a1f4277329affd52e9fd8c39dcffe879a774729e77b4d7570eaf92ce8453358bfdabbb8b976d9b66105d59fac542c70
