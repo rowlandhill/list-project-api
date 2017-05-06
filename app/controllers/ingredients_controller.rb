@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :update, :destroy]
+  before_action :validate_user
 
   # GET /ingredients
   def index
@@ -15,7 +16,9 @@ class IngredientsController < ApplicationController
 
   # POST /ingredients
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    require 'pry'
+    binding.pry
+    @ingredient = current_user.ingredients.build(ingredient_params)
 
     if @ingredient.save
       render json: @ingredient, status: :created, location: @ingredient
@@ -42,6 +45,10 @@ class IngredientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_ingredient
       @ingredient = Ingredient.find(params[:id])
+    end
+
+    def validate_user
+      set_current_user
     end
 
     # Only allow a trusted parameter "white list" through.

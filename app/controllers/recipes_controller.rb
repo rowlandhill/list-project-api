@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :destroy]
+  before_action :validate_user
 
   # GET /recipes
   def index
@@ -15,7 +16,10 @@ class RecipesController < ApplicationController
 
   # POST /recipes
   def create
-    @recipe = Recipe.new(recipe_params)
+    # require 'pry'
+    # binding.pry
+    # @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
 
     if @recipe.save
       render json: @recipe, status: :created, location: @recipe
@@ -41,11 +45,15 @@ class RecipesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
-      @recipe = Recipe.find(params[:id])
+      @recipe = current_user.recipes.find(params[:id])
+    end
+
+    def validate_user
+      set_current_user
     end
 
     # Only allow a trusted parameter "white list" through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :servings)
+      params.require(:recipe).permit(:name, :description, :servings, :user_id)
     end
 end
