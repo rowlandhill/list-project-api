@@ -1,16 +1,15 @@
 #!/bin/bash
 
 API="${API_ORIGIN:-http://localhost:4741}"
-URL_PATH="/ingredients"
+URL_PATH="/recipes"
 curl "${API}${URL_PATH}" \
   --include \
-  --request POST \
+  --request GET \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
-    "ingredient": {
-      "quantity": "'"${QUANTITY}"'",
-      "name": "'"${NAME}"'"
+    "recipe": {
+      "id": "'"${INTEGER}"'"
     }
   }'
 

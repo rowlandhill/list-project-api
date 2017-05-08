@@ -16,8 +16,8 @@ class IngredientsController < ApplicationController
 
   # POST /ingredients
   def create
-    require 'pry'
-    binding.pry
+    # require 'pry'
+    # binding.pry
     @ingredient = current_user.ingredients.build(ingredient_params)
 
     if @ingredient.save
@@ -44,7 +44,7 @@ class IngredientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ingredient
-      @ingredient = Ingredient.find(params[:id])
+      @ingredient = current_user.ingredients.find(params[:id])
     end
 
     def validate_user
