@@ -59,6 +59,7 @@ class RecipesController < ProtectedController
 
     # Only allow a trusted parameter "white list" through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :servings, :user_id)
+      params.require(:recipe).permit(:name, :description, :servings).reject { |_, v| v.blank? }
     end
 end
+# params.require(:movie).permit(:name, :year_released, :mpaa_rating, :user_rating, :length, :ownership_status, :ownership_type, :last_viewing, :times_watched, :id).reject { |_, v| v.blank? }
